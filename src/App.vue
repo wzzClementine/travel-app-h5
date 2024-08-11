@@ -1,11 +1,15 @@
 
 <script setup>
-import Home from "./pages/home.vue";
+
+import Cover from "./pages/Cover.vue";
+import Home from "./pages/Home.vue";
+
 
 </script>
 
 <template>
   <main>
+<!--    <Cover />-->
     <Home />
   </main>
 </template>

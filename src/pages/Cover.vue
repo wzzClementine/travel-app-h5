@@ -1,4 +1,6 @@
+
 <script setup>
+
 import coverImage from '@/images/cover-image.svg';
 import coverImage2 from '@/images/cover-image2.svg';
 import coverImage3 from '@/images/cover-image3.svg';
@@ -20,8 +22,11 @@ const items = ref([
 ]);
 </script>
 
+
 <template>
+
   <div class="container">
+
     <div class="image-wrapper">
       <el-carousel indicator-position="outside" :height="'50vh'" direction="horizontal">
         <el-carousel-item v-for="(item, index) in items" :key="index">
@@ -35,8 +40,11 @@ const items = ref([
 
     <button class="primary-button">开始尝试设计旅程</button>
     <button class="secondary-button">跳过</button>
+
   </div>
+
 </template>
+
 
 <style scoped>
 /* 容器样式 */
@@ -54,7 +62,7 @@ const items = ref([
 .image-wrapper {
   width: 80vw; /* 使用视口宽度来设置宽度 */
   max-width: 400px; /* 限制最大宽度 */
-  margin-bottom: 5vh;
+  margin-bottom: 13vh;
 }
 
 .circle-image {
@@ -73,6 +81,7 @@ const items = ref([
 
 /* 文字样式 */
 .carousel-text {
+  font-family: 'PingFangSC-Medium', 'Arial', sans-serif;
   font-size: 4vw; /* 使用视口宽度作为基准 */
   color: #333;
   text-align: center;
@@ -85,8 +94,10 @@ const items = ref([
 .primary-button {
   width: 50vw;
   max-width: 300px;
-  padding: 1vh 2vw;
+  padding: 0.8vh 2vw;
   font-size: 3.5vw;
+  letter-spacing: 0.2em; /* 相对于字体大小的字母间距 */
+  font-family: 'PingFangSC-Regular', 'Arial', sans-serif;
   color: white;
   background-image: linear-gradient(to right, #4facfe, #a6c1ee, #fbc2eb);
   border: none;
@@ -98,8 +109,9 @@ const items = ref([
 .secondary-button {
   width: 70vw;
   max-width: 300px;
-  padding: 2vh 2vw;
-  font-size: 4vw;
+  padding: 1vh 2vw;
+  font-size: 3.5vw;
+  font-family: 'PingFangSC-Regular', 'Arial', sans-serif;
   color: #666;
   background-color: transparent;
   border: none;

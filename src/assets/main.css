@@ -2,3 +2,38 @@
 
 @import './base.css';
 
+
+@font-face {
+    font-family: 'PingFangSC-Medium';
+    src: url('@/assets/fonts/PingFangSC-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PingFangSC-Regular';
+    src: url('@/assets/fonts/PingFangSC-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PingFangSC-Semibold';
+    src: url('@/assets/fonts/PingFangSC-Semibold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SF-Pro-Text-Medium';
+    src: url('@/assets/fonts/SF-Pro-Text-Medium.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SF-Pro-Text-Semibold';
+    src: url('@/assets/fonts/SF-Pro-Text-Semibold.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
