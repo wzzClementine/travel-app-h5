@@ -1,8 +1,7 @@
-
 <script setup>
-import coverImage from '@/images/cover-image.svg'
-import coverImage2 from '@/images/cover-image2.svg'
-import coverImage3 from '@/images/cover-image3.svg'
+import coverImage from '@/images/cover-image.svg';
+import coverImage2 from '@/images/cover-image2.svg';
+import coverImage3 from '@/images/cover-image3.svg';
 
 // 按需引入 Element Plus
 import { ElCarousel, ElCarouselItem } from 'element-plus';
@@ -15,23 +14,20 @@ const images = ref([coverImage, coverImage2, coverImage3]);
 
 // 定义图片和文字内容
 const items = ref([
-  { image: coverImage, text: '这是第一张图片的描述文字' },
-  { image: coverImage2, text: '这是第二张图片的描述文字' },
-  { image: coverImage3, text: '这是第三张图片的描述文字' }
+  { image: coverImage, text: '随时通过AI助手解决你的<br>旅行问题' },
+  { image: coverImage2, text: '轻松计划你的新加坡旅程' },
+  { image: coverImage3, text: '打卡可以获得优惠券、解锁小游戏以<br>及尝试AR体验，一举三得！' }
 ]);
-
 </script>
 
 <template>
-
   <div class="container">
-
     <div class="image-wrapper">
-      <el-carousel indicator-position="outside" height="300px" direction="horizontal">
+      <el-carousel indicator-position="outside" :height="'50vh'" direction="horizontal">
         <el-carousel-item v-for="(item, index) in items" :key="index">
           <div class="carousel-content">
             <img :src="item.image" alt="Travel Image" class="circle-image">
-            <p class="carousel-text">{{ item.text }}</p>
+            <p class="carousel-text" v-html="item.text"></p>
           </div>
         </el-carousel-item>
       </el-carousel>
@@ -39,19 +35,10 @@ const items = ref([
 
     <button class="primary-button">开始尝试设计旅程</button>
     <button class="secondary-button">跳过</button>
-
   </div>
-
 </template>
 
 <style scoped>
-
-.carousel-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 /* 容器样式 */
 .container {
   display: flex;
@@ -59,50 +46,74 @@ const items = ref([
   align-items: center;
   justify-content: center;
   height: 100vh;
-  padding: 20px;
+  padding: 10vh 5vw;
   box-sizing: border-box;
 }
 
-
 /* 图片圆形样式 */
 .image-wrapper {
-  width: 70%;
-  margin-bottom: 20px;
+  width: 80vw; /* 使用视口宽度来设置宽度 */
+  max-width: 400px; /* 限制最大宽度 */
+  margin-bottom: 5vh;
 }
 
 .circle-image {
   width: 100%;
   border-radius: 50%;
+  object-fit: cover; /* 确保图片按比例填充容器 */
 }
 
-/* 描述文字样式 */
-.description {
-  font-size: 16px;
+/* 轮播内容样式 */
+.carousel-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px; /* 添加内边距，防止文字被裁剪 */
+}
+
+/* 文字样式 */
+.carousel-text {
+  font-size: 4vw; /* 使用视口宽度作为基准 */
   color: #333;
   text-align: center;
-  //margin-bottom: 20px;
+  line-height: 1.5;
+  margin-top: 30px;
+  max-width: 90%;
 }
 
 /* 按钮样式 */
 .primary-button {
-  width: 60%;
-  padding: 10px;
-  font-size: 16px;
+  width: 50vw;
+  max-width: 300px;
+  padding: 1vh 2vw;
+  font-size: 3.5vw;
   color: white;
   background-image: linear-gradient(to right, #4facfe, #a6c1ee, #fbc2eb);
   border: none;
   border-radius: 15px;
   cursor: pointer;
-  //margin-bottom: 15px;
+  margin-bottom: 0.1vh;
 }
 
 .secondary-button {
-  width: 80%;
-  padding: 10px;
-  font-size: 16px;
+  width: 70vw;
+  max-width: 300px;
+  padding: 2vh 2vw;
+  font-size: 4vw;
   color: #666;
   background-color: transparent;
   border: none;
   cursor: pointer;
+}
+
+/* 媒体查询 */
+@media (min-width: 768px) {
+  .carousel-text {
+    font-size: 18px;
+  }
+
+  .primary-button, .secondary-button {
+    font-size: 16px;
+  }
 }
 </style>
