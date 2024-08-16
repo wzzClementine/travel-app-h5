@@ -1,6 +1,11 @@
 
 <script setup>
 
+import { ref } from 'vue';
+
+import { onMounted } from 'vue';
+import { useStore } from 'vuex';
+
 import coverImage from '@/images/cover-image.svg';
 import coverImage2 from '@/images/cover-image2.svg';
 import coverImage3 from '@/images/cover-image3.svg';
@@ -10,9 +15,18 @@ import { ElCarousel, ElCarouselItem } from 'element-plus';
 import 'element-plus/es/components/carousel/style/css';
 import 'element-plus/es/components/carousel-item/style/css';
 
-import { ref } from 'vue';
 
 const images = ref([coverImage, coverImage2, coverImage3]);
+
+
+// TODO: 更换为真实 API 时 使用如下代码渲染页面数据
+// const store = useStore();
+// // 在组件挂载时获取数据
+// onMounted(() => {
+//   store.dispatch('cover/getCarouselData'); // 调用 Vuex 的 action 来获取数据
+// });
+// // 计算属性来映射 Vuex 状态
+// const items = computed(() => store.state.cover.carouselData); // 将数据绑定到 items
 
 // 定义图片和文字内容
 const items = ref([

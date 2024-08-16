@@ -3,8 +3,6 @@
 
 import { ref } from 'vue';
 
-import BottomNav from '@/components/BottomBar.vue';
-
 import coverImage1 from '@/images/index-image1.svg';
 import coverImage2 from '@/images/index-image1.svg';
 import coverImage3 from '@/images/index-image1.svg';
@@ -52,21 +50,21 @@ const activities = ref([
 ]);
 
 // TODO: 更换为真实 API 时 使用如下代码渲染页面数据
-import { useStore } from 'vuex';
-import { computed, onMounted } from 'vue';
-
-const store = useStore();
-// 获取状态
-const dataset = computed(() => store.state.home.data);
-
-// 调用 actions
-const getAllData = () => {
-  store.dispatch('home/getAllData');
-};
-
-onMounted(() => {
-  getAllData() // 组件挂载时获取页面数据进行渲染
-});
+// import { useStore } from 'vuex';
+// import { computed, onMounted } from 'vue';
+//
+// const store = useStore();
+// // 获取状态
+// const dataset = computed(() => store.state.home.data);
+//
+// // 调用 actions
+// const getAllData = () => {
+//   store.dispatch('home/getAllData');
+// };
+//
+// onMounted(() => {
+//   getAllData() // 组件挂载时获取页面数据进行渲染
+// });
 
 </script>
 
@@ -131,10 +129,10 @@ onMounted(() => {
       </div>
     </div>
 
-    <!-- 底部导航栏 -->
-    <div class="bottom-nav">
-      <BottomNav />
-    </div>
+<!--    &lt;!&ndash; 底部导航栏 &ndash;&gt;-->
+<!--    <div class="bottom-nav">-->
+<!--      <BottomNav />-->
+<!--    </div>-->
 
   </div>
 </template>
