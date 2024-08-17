@@ -20,6 +20,14 @@ const activeTab = ref('customPlan');
 // 切换按钮状态
 const switchTab = (tab) => {
   activeTab.value = tab;
+
+  // 根据点击的按钮导航到不同的页面
+  if (tab === 'customPlan') {
+    router.push('/plan-creation/input-plan-title'); // 导航到自定义旅程输入页面
+  } else if (tab === 'existingPlan') {
+    router.push('/existing-plans'); // 导航到成熟旅程库页面
+  }
+
 };
 
 const router = useRouter();
@@ -75,7 +83,7 @@ const description = ref("XXX 可以帮助你在线生成旅程计划");
     <img :src="coverImage" alt="Plan Image" class="image-placeholder">
 
     <!-- 开始计划按钮 -->
-    <button class="primary-button">开始计划我的旅程</button>
+    <button class="primary-button" @click="navigateToPlanTitleInput">开始计划我的旅程</button>
 
     <!-- 描述文字 -->
     <text class="description">{{ description }}</text>
