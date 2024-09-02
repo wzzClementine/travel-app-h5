@@ -1,8 +1,6 @@
 
 <script setup>
 
-import Cover from "./pages/Cover.vue";
-import Home from "./pages/Home.vue";
 
 import BottomNav from '@/components/BottomBar.vue';
 

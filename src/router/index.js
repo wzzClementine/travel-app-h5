@@ -6,6 +6,8 @@ import  Cover from '@/pages/Cover.vue'; // Cover 组件
 import TravelCover from "@/pages/travel/TravelCover.vue";
 import PlanSelection from "@/pages/travel/PlanCreation/PlanSelection.vue";
 import PlanTitle from "@/pages/travel/PlanCreation/PlanTitle.vue";
+import PlanDestinationSetup from "@/pages/travel/PlanCreation/PlanDestinationSetup.vue";
+import PlanDateSetup from "@/pages/travel/PlanCreation/PlanDateSetup.vue";
 
 
 const routes = [
@@ -28,6 +30,16 @@ const routes = [
         path: '/plan-creation/input-plan-title', // 这个路径可以自定义
         name: 'PlanTitle',
         component: PlanTitle
+    },
+    {
+        path: '/plan-creation/plan-destination-setup', // 这个路径可以自定义
+        name: 'PlanDestinationSetup',
+        component: PlanDestinationSetup
+    },
+    {
+        path: '/plan-creation/plan-date-setup', // 这个路径可以自定义
+        name: 'PlanDateSetup',
+        component: PlanDateSetup
     },
 ];
 

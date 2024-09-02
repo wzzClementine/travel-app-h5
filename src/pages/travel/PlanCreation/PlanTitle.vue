@@ -3,12 +3,19 @@
 
 import { ref, watch } from 'vue';
 
+import { useRouter } from 'vue-router' // 导入 useRouter
+
 import ChatBotIcon from "@/components/ChatBotIcon.vue"; // 引入图标组件
 
 import right from "@/images/right-white.svg";
 
 const tripName = ref(''); // Store the trip name input
 
+const router = useRouter();
+// 定义导航函数
+const navigateToPage = () => {
+  router.push('/plan-creation/plan-destination-setup') // 替换为目标路由路径
+}
 
 // 监听 input 的变化
 watch(tripName, (newValue) => {
@@ -40,7 +47,7 @@ watch(tripName, (newValue) => {
     <p class="input-description">名字稍后也可以更改</p>
 
     <!-- 按钮 -->
-    <button class="primary-button">
+    <button class="primary-button" @click="navigateToPage">
       下一步
       <img :src="right" alt="Arrow Icon" class="button-icon"/>
     </button>
