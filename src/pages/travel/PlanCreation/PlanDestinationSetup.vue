@@ -2,6 +2,8 @@
 
 import { ref } from 'vue';
 
+import { useRouter } from 'vue-router' // 导入 useRouter
+
 import ChatBotIcon from "@/components/ChatBotIcon.vue"; // 引入图标组件
 import navigation from "@/images/plan-destination-setup-navigation.svg";
 import edit from "@/images/plan-destination-setup-edit.svg";
@@ -46,13 +48,17 @@ const onDestinationInput = () => {
   }
 };
 
-
 // 选择地点后更新输入框并清空搜索结果
 const selectLocation = (location) => {
   destination.value = location.name;
   searchResults.value = [];
 };
 
+const router = useRouter();
+// 定义导航函数
+const navigateToPage = () => {
+  router.push('/plan-creation/plan-date-setup') // 替换为目标路由路径
+}
 
 </script>
 
@@ -121,7 +127,7 @@ const selectLocation = (location) => {
       <button class="delete-button">
         <img :src="deleteIcon" alt="删除" class="button-icon" />
       </button>
-      <button class="generate-button">生成旅程</button>
+      <button class="generate-button" @click="navigateToPage">生成旅程</button>
     </div>
   </div>
 

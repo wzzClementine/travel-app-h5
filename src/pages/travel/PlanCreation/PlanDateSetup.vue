@@ -5,54 +5,20 @@ import { ref } from 'vue';
 import ChatBotIcon from "@/components/ChatBotIcon.vue"; // 引入图标组件
 import navigation from "@/images/plan-destination-setup-navigation.svg";
 import edit from "@/images/plan-destination-setup-edit.svg";
-import list from "@/images/plan-destination-setup-list.svg";
+import date from "@/images/plan-date-setup-date.svg";
+import time from "@/images/plan-date-setup-time.svg";
 
-import place from "@/images/place.png";
-import map from "@/images/plan-destination-setup-place.svg";
 import deleteIcon from "@/images/plan-destination-setup-delete.svg";
 
+// 按需引入 Element Plus
+import { ElDatePicker } from 'element-plus';
+import 'element-plus/es/components/date-picker/style/css';
+
 const tripName = ref("AAA旅程"); // 旅行名称
-const destination = ref(""); // 目的地输入框
+const destination = ref("环球旅程"); // 目的地输入框
 const isEditing = ref(false); // 标识是否处于编辑模式
 
-const searchResults = ref([]); // 存储搜索结果的数组
-// 模拟的搜索数据
-const allLocations = [
-  { name: '环球影城', address: '圣淘沙岛圣淘沙道8号' },
-  { name: '滨海湾花园', address: '18 Marina Gardens Dr, Singapore' },
-  { name: '滨海湾花园', address: '19 Marina Gardens Dr, Singapore' },
-  { name: '新加坡动物园', address: '80 Mandai Lake Rd, Singapore' }
-];
-
-const startEditing = () => {
-  isEditing.value = true; // 开始编辑
-};
-
-const stopEditing = () => {
-  isEditing.value = false; // 停止编辑
-};
-
-// 当用户输入目的地时更新搜索结果
-const onDestinationInput = () => {
-  console.log("Current input:", destination.value); // 打印当前输入的值
-
-  if (destination.value) {
-    searchResults.value = allLocations.filter(location =>
-        location.name.includes(destination.value)
-    );
-    console.log("Search results:", searchResults.value); // 打印过滤后的结果
-  } else {
-    searchResults.value = [];
-  }
-};
-
-
-// 选择地点后更新输入框并清空搜索结果
-const selectLocation = (location) => {
-  destination.value = location.name;
-  searchResults.value = [];
-};
-
+const value1 = ref('')
 
 </script>
 
@@ -73,8 +39,6 @@ const selectLocation = (location) => {
             v-model="tripName"
             class="trip-name-input"
             type="text"
-            @blur="stopEditing"
-            @keyup.enter="stopEditing"
         />
       </div>
       <div class="edit-button" @click="startEditing">
@@ -90,30 +54,18 @@ const selectLocation = (location) => {
           v-model="destination"
           class="destination-input"
           type="text"
-          placeholder="输入我想去的地方..."
-          @input="onDestinationInput"
+          disabled
       />
-      <img :src="list"  alt="Dropdown" class="dropdown-icon">
+<!--      <img :src="list"  alt="Dropdown" class="dropdown-icon">-->
     </div>
 
-    <!-- 目的地详细信息 -->
-    <div v-if="searchResults.length" class="destination-details">
-      <div
-          class="location-info"
-          v-for="(location, index) in searchResults"
-          :key="index"
-          @click="selectLocation(location)"
-      >
-        <img :src="place" alt="Location" class="location-image">
-        <div>
-          <h3>{{ location.name }}</h3>
-          <p>{{ location.address }}</p>
-        </div>
-      </div>
-      <div class="map-wrapper">
-        <img :src="map">
-        <text class="map-link">在地图上选择...</text>
-      </div>
+    <div class="date-picker-wrapper">
+      <el-date-picker
+          v-model="value1"
+          type="datetime"
+          placeholder="Pick one or more dates"
+
+      />
     </div>
 
     <!-- 底部按钮 -->
@@ -123,6 +75,7 @@ const selectLocation = (location) => {
       </button>
       <button class="generate-button">生成旅程</button>
     </div>
+
   </div>
 
 </template>
@@ -216,9 +169,11 @@ const selectLocation = (location) => {
   color: #CAC8C8;
 }
 
-/* 下拉箭头图标 */
-.dropdown-icon {
-  width: 4vw;
+.destination-input:disabled {
+  background-color: transparent; /* 去掉背景颜色 */
+  //color: #666; /* 设置文字颜色 */
+  //border: 1px solid #ccc; /* 如果你想保留边框 */
+  cursor: not-allowed; /* 指定鼠标样式为“不可操作” */
 }
 
 /* 编辑状态下的标题输入框样式 */
@@ -237,32 +192,6 @@ const selectLocation = (location) => {
   line-height: 1.2; /* 确保行高与标题一致 */
 }
 
-/* 目的地详细信息 */
-.destination-details {
-  display: flex;
-  flex-direction: column;
-  //align-items: center;
-  margin-top: 3vh;
-  //padding: 2vh;
-  border-radius: 3vw;
-  border: 1px solid #DEDEDE;
-}
-
-.location-image {
-  width: 13vw;
-  height: 13vw;
-  border-radius: 2vw;
-  margin-right: 3vw;
-}
-
-.location-info {
-  display: flex;
-  flex-direction: row;
-  padding-left: 5vw;
-  margin-bottom: 0.2vh;
-  padding-top: 2vh;
-}
-
 .location-info h3 {
   font-size: 4vw;
   margin: 0;
@@ -278,22 +207,27 @@ const selectLocation = (location) => {
   font-family: 'PingFangSC-Regular', 'Arial', sans-serif;
 }
 
-.map-wrapper {
-  display: flex;
-  justify-content: center; /* 水平居中 */
-  align-items: center;
-  background-color: #EEF3F5;
-  border-bottom-left-radius: 3vw;
-  border-bottom-right-radius: 3vw;
-  padding: 1.5vh 5vw;
+.date-picker-wrapper {
+  margin-top: 4vh;
+  width: 100%;
+  overflow: visible;
 }
 
-.map-link {
-  font-size: 3.5vw;
-  color: #0074C6;
-  cursor: pointer;
-  margin-left: 2vw;
-  font-family: 'PingFangSC-Regular', 'Arial', sans-serif;
+.custom-date-icon {
+  background-image: url('/src/images/plan-date-setup-date.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+}
+
+.el-input__prefix .el-icon {
+  display: none; /* 隐藏默认图标 */
+}
+
+.el-input__prefix .custom-date-icon {
+  display: inline-block;
 }
 
 /* 底部按钮 */
