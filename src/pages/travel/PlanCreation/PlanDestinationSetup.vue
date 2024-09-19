@@ -127,7 +127,11 @@ const navigateToPage = () => {
       <button class="delete-button">
         <img :src="deleteIcon" alt="删除" class="button-icon" />
       </button>
-      <button class="generate-button" @click="navigateToPage">生成旅程</button>
+      <button
+          class="generate-button"
+          @click="navigateToPage">
+        生成旅程
+      </button>
     </div>
   </div>
 
@@ -333,8 +337,8 @@ const navigateToPage = () => {
 }
 
 .generate-button {
-  background-color: #EEF3F5;
-  color: #333;
+  background-color: #D9D9D9;
+  color: #191919;
   border: none;
   border-radius: 3vw;
   padding: 1.1vh 3vw;

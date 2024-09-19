@@ -8,6 +8,7 @@ import PlanSelection from "@/pages/travel/PlanCreation/PlanSelection.vue";
 import PlanTitle from "@/pages/travel/PlanCreation/PlanTitle.vue";
 import PlanDestinationSetup from "@/pages/travel/PlanCreation/PlanDestinationSetup.vue";
 import PlanDateSetup from "@/pages/travel/PlanCreation/PlanDateSetup.vue";
+import PlanPreview from "@/pages/travel/PlanCreation/PlanPreview.vue";
 
 
 const routes = [
@@ -22,26 +23,32 @@ const routes = [
         component: TravelCover
     },
     {
-        path: '/plan-creation/plan-selection', // 这个路径可以自定义
+        path: '/plan-creation/plan-selection', // 确保路径与路由配置匹配
         name: 'PlanSelection',
         component: PlanSelection
     },
     {
-        path: '/plan-creation/input-plan-title', // 这个路径可以自定义
+        path: '/plan-creation/input-plan-title',
         name: 'PlanTitle',
         component: PlanTitle
     },
     {
-        path: '/plan-creation/plan-destination-setup', // 这个路径可以自定义
+        path: '/plan-creation/plan-destination-setup',
         name: 'PlanDestinationSetup',
         component: PlanDestinationSetup
     },
     {
-        path: '/plan-creation/plan-date-setup', // 这个路径可以自定义
+        path: '/plan-creation/plan-date-setup',
         name: 'PlanDateSetup',
         component: PlanDateSetup
     },
+    {
+        path: '/plan-creation/plan-preview', // 确保路径与访问URL一致
+        name: 'PlanPreview',
+        component: PlanPreview
+    },
 ];
+
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),

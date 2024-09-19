@@ -2,23 +2,47 @@
 
 import { ref } from 'vue';
 
+import { useRouter } from 'vue-router' // 导入 useRouter
+
 import ChatBotIcon from "@/components/ChatBotIcon.vue"; // 引入图标组件
 import navigation from "@/images/plan-destination-setup-navigation.svg";
 import edit from "@/images/plan-destination-setup-edit.svg";
+import list from "@/images/plan-destination-setup-list.svg";
+import up from "@/images/up.svg";
+import add from "@/images/add.svg";
 import date from "@/images/plan-date-setup-date.svg";
 import time from "@/images/plan-date-setup-time.svg";
 
 import deleteIcon from "@/images/plan-destination-setup-delete.svg";
 
 // 按需引入 Element Plus
-import { ElDatePicker } from 'element-plus';
+import { ElDatePicker, ElCard } from 'element-plus';
 import 'element-plus/es/components/date-picker/style/css';
+// import 'element-plus/es/components/card/style/css';
 
 const tripName = ref("AAA旅程"); // 旅行名称
 const destination = ref("环球旅程"); // 目的地输入框
 const isEditing = ref(false); // 标识是否处于编辑模式
 
 const value1 = ref('')
+
+// 点击三角图标切换显示状态
+// 控制是否显示日期和时间选择器
+const showDateTimePicker = ref(true);
+const toggleDateTimePicker = () => {
+  showDateTimePicker.value = !showDateTimePicker.value;
+}
+
+
+const router = useRouter();
+// 定义导航函数
+const navigateToPage = () => {
+  router.push('/plan-creation/plan-destination-setup') // 替换为目标路由路径
+}
+
+const navigateToPlanPreview = () => {
+  router.push('/plan-creation/plan-preview') // 替换为目标路由路径
+}
 
 </script>
 
@@ -56,24 +80,73 @@ const value1 = ref('')
           type="text"
           disabled
       />
-<!--      <img :src="list"  alt="Dropdown" class="dropdown-icon">-->
+      <img
+          :src="showDateTimePicker ? up : list"
+          alt="Dropdown"
+          class="dropdown-icon"
+          @click="toggleDateTimePicker"
+      >
     </div>
 
-    <div class="date-picker-wrapper">
-      <el-date-picker
-          v-model="value1"
-          type="datetime"
-          placeholder="Pick one or more dates"
+    <div v-show="showDateTimePicker" class="date-picker-wrapper">
+      <div>
+        <text class="date-label">出发日期</text>
+        <a-date-picker v-model:value="value1" style="width: 65vw"/>
+      </div>
+      <div style="margin-top: 1.5vh">
+        <text class="date-label">出发时间</text>
+        <a-time-picker v-model:value="value1" style="width: 65vw" />
+      </div>
+    </div>
 
+
+    <!-- 输入框 -->
+    <div class="input-group">
+      <img :src="navigation"  alt="Place Icon" class="input-icon">
+      <input
+          v-model="destination"
+          class="destination-input"
+          type="text"
+          disabled
       />
+      <img
+          :src="showDateTimePicker ? up : list"
+          alt="Dropdown"
+          class="dropdown-icon"
+          @click="toggleDateTimePicker"
+      >
     </div>
+
+    <div v-show="showDateTimePicker" class="date-picker-wrapper">
+      <div>
+        <text class="date-label">出发日期</text>
+        <a-date-picker v-model:value="value1" style="width: 65vw"/>
+      </div>
+      <div style="margin-top: 1.5vh">
+        <text class="date-label">出发时间</text>
+        <a-time-picker v-model:value="value1" style="width: 65vw" />
+      </div>
+    </div>
+
+    <div class="button-container" @click="navigateToPage">
+      <button class="custom-button">
+        <span class="icon">+</span>
+        <span>添加景点</span>
+      </button>
+
+      <button class="custom-button" @click="navigateToPage">
+        <span class="icon">+</span>
+        <span>添加餐厅</span>
+      </button>
+    </div>
+
 
     <!-- 底部按钮 -->
     <div class="bottom-buttons">
       <button class="delete-button">
         <img :src="deleteIcon" alt="删除" class="button-icon" />
       </button>
-      <button class="generate-button">生成旅程</button>
+      <button class="generate-button" @click="navigateToPlanPreview">生成旅程</button>
     </div>
 
   </div>
@@ -144,6 +217,7 @@ const value1 = ref('')
   font-family: 'PingFangSC-Regular', 'Arial', sans-serif;
   //margin-top: 5vh;
   border-bottom: 1px solid #ccc; /* 添加下横线 */
+  margin-top: 2vh;
 }
 
 .input-group.no-border {
@@ -207,10 +281,20 @@ const value1 = ref('')
   font-family: 'PingFangSC-Regular', 'Arial', sans-serif;
 }
 
+.date-label {
+  margin-right: 6vw;
+}
+
 .date-picker-wrapper {
-  margin-top: 4vh;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'PingFangSC-Regular', 'Arial', sans-serif;
+  //align-items: center;
+  margin-top: 2.5vh;
   overflow: visible;
+  //border-left: 1px dashed #FF9CC4; /* 2px的实线左边框，颜色为蓝色 */
+  //padding-left: 1vw;
 }
 
 .custom-date-icon {
@@ -228,6 +312,42 @@ const value1 = ref('')
 
 .el-input__prefix .custom-date-icon {
   display: inline-block;
+}
+
+.button-container {
+  display: flex;
+  //align-items: center;
+  justify-content: space-between;
+  gap: 4vw; /* 控制按钮之间的间距，使用vw来适应屏幕 */
+  padding: 2vh 5vw; /* 适应不同设备的间距 */
+  margin-top: 3vh;
+}
+
+.custom-button {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  border: 0.2vw solid #0074C6; /* 边框自适应屏幕宽度 */
+  border-radius: 5vw; /* 圆角按钮，使用vw保证自适应 */
+  padding: 0.15vh 6.5vw; /* 内边距使用vh和vw来适应不同设备 */
+  background-color: white;
+  color: #0074C6;
+  font-size: 3vw; /* 字体大小使用vw，适应屏幕 */
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.custom-button .icon {
+  //display: flex;
+  //align-items: center; /* 垂直居中 */
+  //justify-content: center; /* 水平居中 */
+  margin-right: 3.2vw; /* 图标和文字之间的间距使用vw */
+  font-size: 4vw; /* 图标大小自适应，使用vw */
+}
+
+.custom-button:hover {
+  background-color: #0074C6;
+  color: white;
 }
 
 /* 底部按钮 */

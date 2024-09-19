@@ -25,7 +25,7 @@ const items = ref([
 
 const router = useRouter();
 // 定义导航函数
-const navigateToPage = () => {
+const navigateToPlanSelectionPage = () => {
   router.push('/plan-creation/plan-selection') // 替换为目标路由路径
 }
 
@@ -52,7 +52,7 @@ const navigateToPage = () => {
     </div>
 
     <!-- 按钮 -->
-    <button class="primary-button" @click="navigateToPage">开始计划我的旅程</button>
+    <button class="primary-button" @click="navigateToPlanSelectionPage">开始计划我的旅程</button>
 
   </div>
 </template>
