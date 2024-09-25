@@ -8,6 +8,7 @@ import places from "@/images/map-place-count.svg";
 import camera from "@/images/map-camera.svg";
 import star from "@/images/map-star.svg";
 import edit from "@/images/map-edit.svg";
+import place from "@/images/place.png";
 
 // 控制面板展开和收起的状态
 const isExpanded = ref(false);
@@ -107,17 +108,35 @@ watch(isExpanded, () => {
           <h3>Day 1</h3>
           <p>2024.4.22 – 2024.4.26 | 4个目的地</p>
           <div class="trip-item">
-            <div class="trip-time">09:00 AM</div>
+            <img class="trip-item-image" alt :src="place" />
             <div class="trip-detail">
-              <p>环球影城</p>
+              <p class="trip-title">环球影城</p>
               <p>人文·游乐园</p>
+              <p class="trip-time">09:00 AM</p>
             </div>
           </div>
           <div class="trip-item">
-            <div class="trip-time">09:00 AM</div>
+            <img class="trip-item-image" alt :src="place" />
             <div class="trip-detail">
-              <p>Un-Yang-Kor-Dai</p>
-              <p>餐厅·特色菜</p>
+              <p class="trip-title">环球影城</p>
+              <p>人文·游乐园</p>
+              <p class="trip-time">09:00 AM</p>
+            </div>
+          </div>
+          <div class="trip-item">
+            <img class="trip-item-image" alt :src="place" />
+            <div class="trip-detail">
+              <p class="trip-title">环球影城</p>
+              <p>人文·游乐园</p>
+              <p class="trip-time">09:00 AM</p>
+            </div>
+          </div>
+          <div class="trip-item">
+            <img class="trip-item-image" alt :src="place" />
+            <div class="trip-detail">
+              <p class="trip-title">环球影城</p>
+              <p>人文·游乐园</p>
+              <p class="trip-time">09:00 AM</p>
             </div>
           </div>
         </div>
@@ -158,7 +177,10 @@ watch(isExpanded, () => {
 }
 
 .expandable-panel.expanded {
+  max-height: 50vh; /* 设置最大高度，例如50vh */
+  overflow-y: auto; /* 垂直滚动 */
   height: auto; /* 展开时高度自动调整 */
+
 }
 
 .panel-header {
@@ -264,31 +286,53 @@ watch(isExpanded, () => {
 }
 
 .day-summary {
-  margin: 3vw 1vw 0 1vw;
+  margin: 3vw 2vw 0 2vw;
 }
 
 .day-summary h3 {
   font-size: 2.5vh;
   font-family: 'PingFangSC-Semibold', 'Arial', sans-serif;
   margin-bottom: 0;
+  margin-top: 2.5vh;
 }
 
 .day-summary p {
-  font-size: 1.5vh;
+  font-size: 1.4vh;
   color: #7A7A7A;
   font-family: 'PingFangSC-Regular', 'Arial', sans-serif;
+  margin-bottom: 2vh;
 }
 
 .trip-item {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+  //justify-content: space-between;
   margin-bottom: 3vw;
+
+}
+
+.trip-item-image {
+  border-radius: 50%;
+  height: 5vh;
+  width: 5vh;
+  margin-right: 1.5vh;
+}
+
+.trip-detail p {
+  margin-bottom: 0;
+}
+
+.trip-title {
+  color: black !important;
+  font-size: 1.6vh !important;
+  font-weight: 600;
+  font-family: 'PingFangSC-Semibold', 'Arial', sans-serif;
 }
 
 .action-buttons {
   display: flex;
   justify-content: space-around;
-  margin-top: 1.2vh;
+  margin-top: 3vh;
   margin-bottom: 2vh;
 }
 
