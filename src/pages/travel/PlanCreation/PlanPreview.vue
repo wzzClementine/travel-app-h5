@@ -2,6 +2,8 @@
 <script setup>
 
 import {ref} from 'vue';
+import { useRouter } from 'vue-router' // 导入 useRouter
+
 import PlanCard from '@/components/PlanCard.vue';
 
 import example from "@/images/place.png";
@@ -27,7 +29,17 @@ const restaurants = ref([
   {id: 3, name: 'Un-Yang-Kor-Dai', price: '¥382/人', location: '市中心/克拉码头', cuisine: '泰国菜', image: example},
 ]);
 
-
+const router = useRouter();
+// 定义导航函数
+const navigateToPlanDetail = () => {
+  router.push('/plan-creation/plan-detail') // 替换为目标路由路径
+}
+const navigateToPlanGeneration = () => {
+  router.push('/plan-creation/plan-generation') // 替换为目标路由路径
+}
+const navigateToPlanDateSetup = () => {
+  router.push('/plan-creation/plan-date-setup') // 替换为目标路由路径
+}
 
 </script>
 
@@ -37,11 +49,10 @@ const restaurants = ref([
     <div class="header">
       <h1>{{ tripTitle }}</h1>
       <div class="buttons">
-        <button class="btn-custom">完成自定义攻略</button>
-        <button class="btn-recommend">生成推荐攻略</button>
+        <button class="btn-custom"  @click="navigateToPlanGeneration">完成自定义攻略</button>
+        <button class="btn-recommend" @click="navigateToPlanDetail">生成推荐攻略</button>
       </div>
     </div>
-
 
     <div class="trip-info">
       <div class="date-wrapper">
@@ -59,7 +70,7 @@ const restaurants = ref([
           <text class="trip-dates">选择景点</text>
           <img alt class="place-icon" :src=placeImg />
         </div>
-        <text class="edit-button">修改</text>
+        <text class="edit-button" @click="navigateToPlanDateSetup">修改</text>
       </div>
       <div class="attraction-list">
         <PlanCard
@@ -81,7 +92,7 @@ const restaurants = ref([
           <text class="trip-dates">选择餐厅</text>
           <img alt class="place-icon" :src=mealImg />
         </div>
-        <text class="edit-button">修改</text>
+        <text class="edit-button" @click="navigateToPlanDateSetup">修改</text>
       </div>
       <div class="attraction-list">
         <PlanCard
@@ -167,7 +178,7 @@ h2 {
 }
 
 .restaurant {
-  margin-top: 0vh;
+  //margin-top: 0vh;
 }
 
 .date-wrapper {
@@ -184,6 +195,7 @@ h2 {
 }
 
 .trip-dates-info {
+  font-size: 4.5vw;
   font-family: 'PingFangSC-Medium', 'Arial', sans-serif;
 }
 

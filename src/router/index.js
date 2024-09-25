@@ -9,6 +9,9 @@ import PlanTitle from "@/pages/travel/PlanCreation/PlanTitle.vue";
 import PlanDestinationSetup from "@/pages/travel/PlanCreation/PlanDestinationSetup.vue";
 import PlanDateSetup from "@/pages/travel/PlanCreation/PlanDateSetup.vue";
 import PlanPreview from "@/pages/travel/PlanCreation/PlanPreview.vue";
+import PlanDetail from "@/pages/travel/PlanCreation/PlanDetail.vue";
+import PlanGeneration from "@/pages/travel/PlanCreation/PlanGeneration.vue";
+import PlanPreviewWithMap from "@/pages/travel/PlanCreation/PlanPreviewWithMap.vue";
 
 
 const routes = [
@@ -47,6 +50,21 @@ const routes = [
         name: 'PlanPreview',
         component: PlanPreview
     },
+    {
+        path: '/plan-creation/plan-detail', // 确保路径与访问URL一致
+        name: 'PlanDetail',
+        component: PlanDetail
+    },
+    {
+        path: '/plan-creation/plan-generation',
+        name: 'PlanGeneration',
+        component: PlanGeneration
+    },
+    {
+        path: '/plan-creation/plan-preview-with-map',
+        name: 'PlanPreviewWithMap',
+        component: PlanPreviewWithMap
+    }
 ];
 
 
