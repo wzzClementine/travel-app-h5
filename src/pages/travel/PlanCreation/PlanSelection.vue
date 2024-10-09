@@ -3,38 +3,15 @@
 
 import { ref } from 'vue';
 
-import { useRouter } from 'vue-router' // 导入 useRouter
-
 import ChatBotIcon from "@/components/ChatBotIcon.vue"; // 引入图标组件
-
-import customIcon from "@/images/plan-selection-custom.svg";
-import systemIcon from "@/images/plan-selection-system.svg";
-import customIconInactive from "@/images/plan-selection-custom-inactive.svg";
-import systemIconActive from "@/images/plan-selection-system-active.svg";
 
 import coverImage from '@/images/cover-image.svg';
 
-// 定义按钮和状态
-const activeTab = ref('customPlan');
+import SwitchBar from "@/components/SwitchBar.vue";
 
-// 切换按钮状态
-const switchTab = (tab) => {
-  activeTab.value = tab;
+const customPlansUrl = "/plan-creation/input-plan-title";
+const systemPlansUrl = "/travel/system-plans";
 
-  // 根据点击的按钮导航到不同的页面
-  if (tab === 'customPlan') {
-    router.push('/plan-creation/input-plan-title'); // 导航到自定义旅程输入页面
-  } else if (tab === 'existingPlan') {
-    router.push('/existing-plans'); // 导航到成熟旅程库页面
-  }
-
-};
-
-const router = useRouter();
-// 定义导航函数
-const navigateToPlanTitleInput = () => {
-  router.push('/plan-creation/input-plan-title') // 替换为目标路由路径
-}
 
 // 按钮文案
 const description = ref("XXX 可以帮助你在线生成旅程计划");
@@ -52,32 +29,7 @@ const description = ref("XXX 可以帮助你在线生成旅程计划");
     </div>
 
     <!-- 按钮切换区 -->
-    <div class="button-group">
-      <button
-          class="tab-button"
-          :class="{ active : activeTab === 'customPlan' }"
-          @click="switchTab('customPlan')"
-      >
-        <img
-            :src="activeTab === 'customPlan' ? customIcon : customIconInactive"
-            alt="Custom Plan Icon"
-            class="tab-icon"
-        />
-        自定义旅程
-      </button>
-      <button
-          class="tab-button"
-          :class="{ active: activeTab === 'existingPlan' }"
-          @click="switchTab('existingPlan')"
-      >
-        <img
-            :src="activeTab === 'existingPlan' ? systemIconActive : systemIcon"
-            alt="System Plan Icon"
-            class="tab-icon"
-        />
-        成熟旅程库
-      </button>
-    </div>
+    <SwitchBar :customPlansUrl="customPlansUrl" :systemPlansUrl="systemPlansUrl"/>
 
     <!-- 圆形图片 -->
     <img :src="coverImage" alt="Plan Image" class="image-placeholder">

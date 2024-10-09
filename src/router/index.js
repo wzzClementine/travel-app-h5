@@ -12,6 +12,7 @@ import PlanPreview from "@/pages/travel/PlanCreation/PlanPreview.vue";
 import PlanDetail from "@/pages/travel/PlanCreation/PlanDetail.vue";
 import PlanGeneration from "@/pages/travel/PlanCreation/PlanGeneration.vue";
 import PlanPreviewWithMap from "@/pages/travel/PlanCreation/PlanPreviewWithMap.vue";
+import SystemPlans from "@/pages/travel/SystemPlans.vue";
 
 
 const routes = [
@@ -64,6 +65,11 @@ const routes = [
         path: '/plan-creation/plan-preview-with-map',
         name: 'PlanPreviewWithMap',
         component: PlanPreviewWithMap
+    },
+    {
+        path: '/travel/system-plans',
+        name: 'SystemPlans',
+        component: SystemPlans
     }
 ];
 
