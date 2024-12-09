@@ -13,6 +13,7 @@ import PlanDetail from "@/pages/travel/PlanCreation/PlanDetail.vue";
 import PlanGeneration from "@/pages/travel/PlanCreation/PlanGeneration.vue";
 import PlanPreviewWithMap from "@/pages/travel/PlanCreation/PlanPreviewWithMap.vue";
 import SystemPlans from "@/pages/travel/SystemPlans.vue";
+import Chatbot from "@/pages/Chatbot.vue";
 
 
 const routes = [
@@ -70,6 +71,11 @@ const routes = [
         path: '/travel/system-plans',
         name: 'SystemPlans',
         component: SystemPlans
+    },
+    {
+        path: '/chatbot',
+        name: 'Chatbot',
+        component: Chatbot
     }
 ];
 

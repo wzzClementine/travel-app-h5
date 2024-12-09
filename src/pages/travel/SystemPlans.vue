@@ -11,7 +11,6 @@ import ChatBotIcon from "@/components/ChatBotIcon.vue"; // 引入图标组件
 
 import SwitchBar from "@/components/SwitchBar.vue";
 
-
 const customPlansUrl = "/plan-creation/input-plan-title";
 const systemPlansUrl = "/travel/system-plans";
 

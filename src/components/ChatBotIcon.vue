@@ -1,7 +1,19 @@
 
+<script setup>
+
+import { useRouter } from 'vue-router' // 导入 useRouter
+
+const router = useRouter();
+// 定义导航函数
+const navigateToPage = () => {
+  router.push('/chatbot') // 替换为目标路由路径
+}
+
+</script>
+
 <template>
-  <div class="icon-container">
-    <img src="@/images/chatbot.svg" alt="Chat Icon" class="chat-icon" />
+  <div class="icon-container" @click="navigateToPage">
+    <img src="@/images/chatbot.svg" alt="Chat Icon" class="chat-icon"/>
   </div>
 </template>
 
